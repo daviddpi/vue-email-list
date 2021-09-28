@@ -8,7 +8,7 @@
 export default {
     props: {
         emailText: String,
-        emailIndex: String ,
+        emailIndex: Number,
     }
 }
 </script>

@@ -30,7 +30,7 @@ export default {
         axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then( (response) => {
         const result = response;
         this.arrayEmail.push(result.data.response);
-        console.log(this.arrayEmail);
+        console.log(result.data.response);
       })
     }
   }
