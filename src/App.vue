@@ -1,17 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <h1>Le mie email:</h1>
+    <div v-if="arrayEmail.length == 10">
+      <Email v-for="(mail, index) in arrayEmail" :key="index" :emailText="mail" :emailIndex="index"/>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
+import Email from './components/Email.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Email,
+  },
+
+  data(){
+    return{
+      arrayEmail: [],
+    }
+  },
+
+  mounted(){
+    for(let i = 0; i < 10; i++){
+        axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then( (response) => {
+        const result = response;
+        this.arrayEmail.push(result.data.response);
+        console.log(this.arrayEmail);
+      })
+    }
   }
 }
 </script>
